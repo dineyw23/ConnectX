@@ -30,4 +30,21 @@ TEST(ConnectXTest,defaultwhoseTurn)
   ASSERT_EQ(ConnectX::BLACK,connectXObj.whoseTurn());
 }
 
+//This test assures if the whoseTurn return White
+TEST(ConnectXTest,whoseTurnAfterOnePlacePiece)
+{
+  ConnectX connectXObj;
+  connectXObj.placePiece(1);
+  ASSERT_EQ(ConnectX::WHITE, connectXObj.whoseTurn());
+}
+
+//Apart from default, whose turn should return BLACK.
+//This test if check if it return BLACK again.
+TEST(ConnectXTest,whoseTurnAfterTwoPlacePiece)
+{
+  ConnectX connectXObj;
+  connectXObj.placePiece(1);
+  connectXObj.placePiece(2);
+  ASSERT_EQ(ConnectX::BLACK, connectXObj.whoseTurn());
+}
 
