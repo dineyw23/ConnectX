@@ -9,6 +9,7 @@
 const Piece ConnectX::BLACK;
 const Piece ConnectX::WHITE;
 const Piece ConnectX::INVALID;
+const Piece ConnectX::EMPTY;
 
 class ConnectXTest : public ::testing::Test
 {
@@ -49,10 +50,19 @@ TEST(ConnectXTest,whoseTurnAfterTwoPlacePiece)
   ASSERT_EQ(ConnectX::BLACK, connectXObj.whoseTurn());
 }
 
-TEST(ConnectXTest,atInvalidPosition)
+TEST(ConnectXTest,atInvalidWidthandHeight)
 {
   //Assures that we are explicitly specifying the size of board.
   ConnectX connectXObj(5,5,3);
   ASSERT_EQ(ConnectX :: INVALID,connectXObj.at(6,6));
 }
 
+
+//This test has only the width INVALID but it should return INVALID.
+//This test exposes BUG1 in the inBounds. It should return INVALID but return garbage
+//Even if the width is invalid and height is valid, inBounds will return TRUE.
+TEST(ConnectXTest,atInvalidWidthOnly)
+{
+  ConnectX connectXObj(5,2,3);
+  ASSERT_EQ(ConnectX::INVALID,connectXObj.at(5,0));
+}
