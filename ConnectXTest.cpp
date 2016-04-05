@@ -8,6 +8,7 @@
  
 const Piece ConnectX::BLACK;
 const Piece ConnectX::WHITE;
+const Piece ConnectX::INVALID;
 
 class ConnectXTest : public ::testing::Test
 {
@@ -46,5 +47,12 @@ TEST(ConnectXTest,whoseTurnAfterTwoPlacePiece)
   connectXObj.placePiece(1);
   connectXObj.placePiece(2);
   ASSERT_EQ(ConnectX::BLACK, connectXObj.whoseTurn());
+}
+
+TEST(ConnectXTest,atInvalidPosition)
+{
+  //Assures that we are explicitly specifying the size of board.
+  ConnectX connectXObj(5,5,3);
+  ASSERT_EQ(ConnectX :: INVALID,connectXObj.at(6,6));
 }
 
