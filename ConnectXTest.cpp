@@ -121,3 +121,31 @@ TEST(ConnectXTest, placePieceColumnOverflow)
   ASSERT_EQ(ConnectX::BLACK,connectXObj.at(0,2));
 }
 
+
+//Test for constructor
+TEST(ConnectXTest,cstrWidthZero)
+{
+  ConnectX connectXObj(0,5,2);
+  connectXObj.showBoard();
+  ASSERT_EQ(ConnectX :: EMPTY,connectXObj.at(1,1));
+}
+
+//Test for constructor
+TEST(ConnectXTest,cstrHeightZero)
+{
+  ConnectX connectXObj(5,0,2);
+  ASSERT_EQ(ConnectX :: EMPTY,connectXObj.at(1,1)); 
+  connectXObj.placePiece(0);
+  connectXObj.placePiece(0);
+  connectXObj.showBoard();
+  
+}
+
+//Test for constructor
+TEST(ConnectXTest,cstrToWinZero)
+{
+  ConnectX connectXObj(5,5,0);
+  ASSERT_EQ(ConnectX :: EMPTY,connectXObj.at(1,1)); 
+} 
+
+
