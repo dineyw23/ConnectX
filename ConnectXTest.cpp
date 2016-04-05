@@ -90,3 +90,34 @@ TEST(ConnectXTest,atInvalidHeightLowerLimit)
   ConnectX connectXObj(5,3,3);
   ASSERT_EQ(ConnectX::INVALID,connectXObj.at(0,-4));
 }
+
+//Place piece in valid column
+TEST(ConnectXTest, placePieceValid)
+{
+  ConnectX connectXObj(4,4,3);
+  connectXObj.placePiece(0);
+  ASSERT_EQ(ConnectX::WHITE,connectXObj.whoseTurn()); 
+  ASSERT_EQ(ConnectX::BLACK,connectXObj.at(0,3));
+}
+
+//Place piece in invalid column
+TEST(ConnectXTest, placeMineInvalid)
+{
+  ConnectX connectXObj(4,4,3);
+  connectXObj.placePiece(5);//Invalid column
+  ASSERT_EQ(ConnectX::WHITE,connectXObj.whoseTurn());
+
+}
+
+//Place pieces more than the height
+TEST(ConnectXTest, placePieceColumnOverflow)
+{
+  ConnectX connectXObj(3,3,2);
+  connectXObj.placePiece(0);
+  connectXObj.placePiece(0);
+  connectXObj.placePiece(0);
+  connectXObj.placePiece(0);
+  ASSERT_EQ(ConnectX::BLACK,connectXObj.whoseTurn());
+  ASSERT_EQ(ConnectX::BLACK,connectXObj.at(0,2));
+}
+
