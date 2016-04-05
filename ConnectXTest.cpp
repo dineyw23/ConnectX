@@ -66,3 +66,12 @@ TEST(ConnectXTest,atInvalidWidthOnly)
   ConnectX connectXObj(5,2,3);
   ASSERT_EQ(ConnectX::INVALID,connectXObj.at(5,0));
 }
+
+//This checks for height invalid and width valid. 
+TEST(ConnectXTest,atInvalidHeightOnly)
+{
+  ConnectX connectXObj(5,3,3);
+  ASSERT_EQ(ConnectX :: INVALID, connectXObj.at(0,4));
+
+}
+
