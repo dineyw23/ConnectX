@@ -64,7 +64,7 @@ TEST(ConnectXTest,atInvalidWidthandHeight)
 TEST(ConnectXTest,atInvalidWidthOnly)
 {
   ConnectX connectXObj(5,2,3);
-  ASSERT_EQ(ConnectX::INVALID,connectXObj.at(5,0));
+  ASSERT_EQ(ConnectX::INVALID,connectXObj.at(10,0));
 }
 
 //This checks for height invalid and width valid. 
@@ -75,3 +75,18 @@ TEST(ConnectXTest,atInvalidHeightOnly)
 
 }
 
+//This test has only the width INVALID but it should return INVALID.
+//This test exposes BUG1 in the inBounds. It should return INVALID but return garbage
+//Even if the width is invalid and height is valid, inBounds will return TRUE.
+TEST(ConnectXTest,atInvalidWidthLowerBound)
+{
+  ConnectX connectXObj(5,2,3);
+  ASSERT_EQ(ConnectX::INVALID,connectXObj.at(-1,0));
+}
+
+//This checks for height invalid and width valid. 
+TEST(ConnectXTest,atInvalidHeightLowerLimit)
+{
+  ConnectX connectXObj(5,3,3);
+  ASSERT_EQ(ConnectX::INVALID,connectXObj.at(0,-4));
+}
