@@ -92,7 +92,7 @@ TEST(ConnectXTest,atInvalidHeightLowerLimit)
 }
 
 //Place piece in valid column
-TEST(ConnectXTest, placePieceValid)
+wST(ConnectXTest, placePieceValid)
 {
   ConnectX connectXObj(4,4,3);
   connectXObj.placePiece(0);
@@ -126,7 +126,7 @@ TEST(ConnectXTest, placePieceColumnOverflow)
 TEST(ConnectXTest,cstrWidthZero)
 {
   ConnectX connectXObj(0,5,2);
-  connectXObj.showBoard();
+  connectXObj.showBoard();//Just called for sanity check and coverage.
   ASSERT_EQ(ConnectX :: EMPTY,connectXObj.at(1,1));
 }
 
