@@ -24,7 +24,8 @@
 
   * One of the ideas to fix the bug.
 
-``` bool ConnectX::inBounds(int w, int h)
+```C++ 
+bool ConnectX::inBounds(int w, int h)
 { 
 	bool inside;
 	if( w>=width || w<0 )
@@ -42,7 +43,6 @@
 
 	return inside;
 }
-
 ```
 
 
