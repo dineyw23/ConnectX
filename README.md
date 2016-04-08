@@ -45,8 +45,16 @@
 ```
 
 
-#### BUG 2: Redundant Code in placePiece function
-
+#### BUG 2: `placePiece` function places a piece on board even tough invalid column is passed 
   * Issue Description
-  placePiece function has a condition which is redundant. In the `if` statement,first `at` function is called which calls the `inBounds` function and checks if the
-  position is valid or not valid. Again the `inBounds` function is called in the second part of the if statement which is not required as we are checking it already using the `at` function. This does not affect the functionality directly but is redundant and it is not possible to cover that particular branch.
+  The `placePiece` function should JUST toggle turns if invalid position is passed as an argument.
+  placePiece should not place any Piece on board if invalid column id specified, it should just toggle turn.
+  The placePiece function toggles turn but also places a `BLACK` piece on the board if random large value is passed.
+  The `inBound` function returns true and also vector resizes. If `signed int` (negative) is passed to vector, it implicitly typecasts it to `unsigned int`.
+  This results in `placePiece` putting a piece on board randomly. The ideal behavior should just toggle turn.
+
+  * Steps to replicate
+    - Call `placePiece` with `-10` as argument. 
+    - Check the board, there should not be any piece on the board.
+
+  * Example: Test `placePieceRandom` will fail and expose this bug.    

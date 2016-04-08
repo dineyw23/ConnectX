@@ -92,7 +92,7 @@ TEST(ConnectXTest,atInvalidHeightLowerLimit)
 }
 
 //Place piece in valid column
-wST(ConnectXTest, placePieceValid)
+TEST(ConnectXTest, placePieceValid)
 {
   ConnectX connectXObj(4,4,3);
   connectXObj.placePiece(0);
@@ -126,7 +126,6 @@ TEST(ConnectXTest, placePieceColumnOverflow)
 TEST(ConnectXTest,cstrWidthZero)
 {
   ConnectX connectXObj(0,5,2);
-  connectXObj.showBoard();//Just called for sanity check and coverage.
   ASSERT_EQ(ConnectX :: EMPTY,connectXObj.at(1,1));
 }
 
@@ -137,15 +136,31 @@ TEST(ConnectXTest,cstrHeightZero)
   ASSERT_EQ(ConnectX :: EMPTY,connectXObj.at(1,1)); 
   connectXObj.placePiece(0);
   connectXObj.placePiece(0);
-  connectXObj.showBoard();
-  
+  connectXObj.showBoard();//Just called for sanity check and coverage.
 }
 
 //Test for constructor
 TEST(ConnectXTest,cstrToWinZero)
 {
-  ConnectX connectXObj(5,5,0);
-  ASSERT_EQ(ConnectX :: EMPTY,connectXObj.at(1,1)); 
+  ConnectX connectXObj(5,2,0);
+  connectXObj.placePiece(0);
+  ASSERT_EQ(ConnectX :: BLACK,connectXObj.at(0,5));
+  
 } 
 
+//Test for constructor
+TEST(ConnectXTest,placePieceRandom)
+{
+  bool check = false;
+  ConnectX connectXObj;
+  connectXObj.placePiece(-10);
+  connectXObj.showBoard();
+  for(int i = 0; i < 7;++i)
+  {
+    for(int j = 0; j < 6; ++j)
+      if(ConnectX::EMPTY != connectXObj.at(i,j))
+        check = true;
+  }
+  ASSERT_EQ(check,false); 
+} 
 
