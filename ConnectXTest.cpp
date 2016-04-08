@@ -148,7 +148,7 @@ TEST(ConnectXTest,cstrToWinZero)
   
 } 
 
-//Test for constructor
+//Test to expose BUG2. places a piece randomly on the board. 
 TEST(ConnectXTest,placePieceRandom)
 {
   bool check = false;
